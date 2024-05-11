@@ -4,13 +4,25 @@ import shared
 struct ContentView: View {
     
     @State private var shouldOpenAbout = false
+    @State private var shouldOpenSources = false
     
 	var body: some View {
-        let articleScreen = ArticlesScreen(viewModel: .init())
+        let articlesScreen = ArticlesScreen(viewModel: .init())
         
         NavigationStack {
-            ArticlesScreen(viewModel: .init())
+            articlesScreen
                 .toolbar {
+                    ToolbarItem {
+                        Button {
+                            shouldOpenSources = true
+                        } label: {
+                            Label("Sources", systemImage: "list.bullet.rectangle")
+                                .labelStyle(.titleAndIcon)
+                        }
+                        .popover(isPresented: $shouldOpenSources) {
+                            SourcesScreen(viewModel: .init())
+                        }
+                    }
                     ToolbarItem {
                         Button {
                             shouldOpenAbout = true
@@ -23,7 +35,7 @@ struct ContentView: View {
                     }
                 }
         }.refreshable {
-            articleScreen.viewModel.articlesViewModel.getArticles(forceFetch: true)
+            articlesScreen.viewModel.articlesViewModel.getArticles(forceFetch: true)
         }
 	}
 }
