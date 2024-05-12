@@ -1,4 +1,4 @@
-package com.easyhooon.dailypulse.android.screens
+package com.easyhooon.dailypulse.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,38 +24,49 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import com.easyhooon.dailypulse.sources.domain.Source
 import com.easyhooon.dailypulse.sources.presentation.SourcesViewModel
-import org.koin.androidx.compose.getViewModel
+import com.easyhooon.dailypulse.ui.screens.elements.ErrorMessage
+import org.koin.compose.koinInject
+
+class SourcesScreen: Screen {
+    @Composable
+    override fun Content() {
+        SourcesScreenContent()
+    }
+}
 
 @Composable
-fun SourcesScreen(
-    viewModel: SourcesViewModel = getViewModel(),
-    onUpButtonClick: () -> Unit
+fun SourcesScreenContent(
+    viewModel: SourcesViewModel = koinInject(),
 ) {
-    val articlesState = viewModel.sourcesState.collectAsState()
+    val sourcesState = viewModel.sourcesState.collectAsState()
 
     Column {
-        AppBar(onUpButtonClick)
+        AppBar()
 
-        if (articlesState.value.error != null)
-            ErrorMessage(articlesState.value.error!!)
+        if (sourcesState.value.error != null)
+            ErrorMessage(sourcesState.value.error!!)
 
         SourcesListView(viewModel)
     }
 }
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AppBar(
-    onUpButtonClick: () -> Unit,
 ) {
+    val navigator = LocalNavigator.currentOrThrow
     TopAppBar(
         title = { Text(text = "Sources") },
         navigationIcon = {
-            IconButton(onClick = onUpButtonClick) {
+            IconButton(onClick = {
+                navigator.pop()
+            }) {
                 Icon(
-                    imageVector = Icons.Default.ArrowBack,
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "Up Button",
                 )
             }

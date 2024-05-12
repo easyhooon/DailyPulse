@@ -1,4 +1,4 @@
-package com.easyhooon.dailypulse.android
+package com.easyhooon.dailypulse.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
