@@ -85,10 +85,6 @@ android {
         minSdk = 24
     }
 }
-dependencies {
-    implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.androidx.lifecycle.runtime.compose.android)
-}
 
 sqldelight {
     databases {
