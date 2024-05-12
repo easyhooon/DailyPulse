@@ -2,6 +2,7 @@ package com.easyhooon.dailypulse.articles.presentation
 
 import com.easyhooon.dailypulse.BaseViewModel
 import com.easyhooon.dailypulse.articles.domain.ArticlesUseCase
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -24,7 +25,7 @@ class ArticlesViewModel(
 
             val fetchedArticles = useCase.getArticles(forceFetch)
 
-            _articlesState.emit(ArticlesState(articles = fetchedArticles))
+            _articlesState.emit(ArticlesState(articles = fetchedArticles.toImmutableList()))
         }
     }
 }
