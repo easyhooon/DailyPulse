@@ -1,10 +1,12 @@
 # DailyPulse
 
 ## Branch 
-- main -> CMP(Compose Multiplatform)
+- main -> CMP(Compose Multiplatform - Android, iOS, Web, Desktop)
+- cmp -> CMP(Compose Multiplatform - Android, iOS)
 - kmp -> KMP(Kotlin Multiplatform)
-
 ## main TODO
+
+## cmp TODO
 - [x] iosApp 정상 빌드
 ## kmp TODO
 - [x] iosApp 정상 빌드
