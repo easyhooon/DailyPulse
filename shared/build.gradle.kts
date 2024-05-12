@@ -35,6 +35,7 @@ kotlin {
             dependencies {
                 //put your multiplatform dependencies here
                 implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.collections.immutable)
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.content.negotiation)
                 implementation(libs.ktor.serialization.kotlinx.json)
@@ -83,6 +84,10 @@ android {
     defaultConfig {
         minSdk = 24
     }
+}
+dependencies {
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
 }
 
 sqldelight {
