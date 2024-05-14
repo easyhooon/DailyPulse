@@ -1,14 +1,14 @@
 package com.easyhooon.dailypulse.articles.data
 
-import com.easyhooon.dailypulse.db.DailyPulseDatabase
+import easyhooon.dailypulse.db.DailyPulseDatabase
 
-class ArticlesDataSource(private val database: DailyPulseDatabase) {
+class ArticlesDataSource(private val database: DailyPulseDatabase?) {
 
     fun getAllArticles(): List<ArticleRaw> =
-        database.dailyPulseDatabaseQueries.selectAllArticles(::mapToArticleRaw).executeAsList()
+        database?.dailyPulseDatabaseQueries?.selectAllArticles(::mapToArticleRaw)?.executeAsList() ?: listOf()
 
     fun insertArticles(articles: List<ArticleRaw>) {
-        database.dailyPulseDatabaseQueries.transaction {
+        database?.dailyPulseDatabaseQueries?.transaction {
             articles.forEach { articleRaw ->
                 insertArticle(articleRaw)
             }
@@ -16,10 +16,10 @@ class ArticlesDataSource(private val database: DailyPulseDatabase) {
     }
 
     fun clearArticles() =
-        database.dailyPulseDatabaseQueries.removeAllArticles()
+        database?.dailyPulseDatabaseQueries?.removeAllArticles()
 
     private fun insertArticle(articleRaw: ArticleRaw) {
-        database.dailyPulseDatabaseQueries.insertArticle(
+        database?.dailyPulseDatabaseQueries?.insertArticle(
             articleRaw.title,
             articleRaw.desc,
             articleRaw.date,

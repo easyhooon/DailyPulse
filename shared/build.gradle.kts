@@ -111,7 +111,7 @@ android {
 sqldelight {
     databases {
         create(name = "DailyPulseDatabase") {
-            packageName.set("com.easyhooon.dailypulse.db")
+            packageName.set("easyhooon.dailypulse.db")
         }
     }
 }
