@@ -1,6 +1,6 @@
 package com.easyhooon.dailypulse.sources.data
 
-import easyhooon.dailypulse.db.DailyPulseDatabase
+import com.easyhooon.dailypulse.db.DailyPulseDatabase
 
 class SourcesDataSource(private val db: DailyPulseDatabase) {
 

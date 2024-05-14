@@ -30,6 +30,13 @@ kotlin {
         }
     }
 
+    jvm("desktop")
+
+    js(IR) {
+        binaries.executable()
+        browser()
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -70,11 +77,26 @@ kotlin {
             }
         }
 
+        val desktopMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+                implementation(libs.sql.desktop.driver)
+            }
+        }
+
+        val jsMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.js)
+            }
+        }
+
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
             }
         }
+
+        task("testClasses") {}
     }
 }
 
@@ -89,7 +111,11 @@ android {
 sqldelight {
     databases {
         create(name = "DailyPulseDatabase") {
-            packageName.set("easyhooon.dailypulse.db")
+            packageName.set("com.easyhooon.dailypulse.db")
         }
     }
+}
+
+compose.experimental {
+    web.application {}
 }
