@@ -5,7 +5,9 @@
 - cmp -> CMP(Compose Multiplatform - Android, iOS)
 - kmp -> KMP(Kotlin Multiplatform)
 ## main TODO
-
+- [x] desktop 정상 빌드
+- [x] web 정상 빌드
+- [ ] 한글 깨짐 이슈 해결 reference) https://holykisa.tistory.com/117 
 ## cmp TODO
 - [x] iosApp 정상 빌드
 ## kmp TODO
