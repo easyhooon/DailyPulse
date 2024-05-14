@@ -21,3 +21,7 @@
 <img width="465" alt="image" src="https://github.com/easyhooon/DailyPulse/assets/51016231/fd0c383e-b3fa-49b6-9d66-e96af014ec4b">
 
 - Android Studio 에서도 iosApp 빌드가 가능하다 (백그라운드에 xcode가 존재 해야 하긴함)
+  
+- What went wrong:
+Cannot locate tasks that match ':shared:testClasses' as task 'testClasses' not found in project ':shared'. error 발생
+  -> `task("testClasses") {}` 를 shared 모듈 build.gradle.kts 에 추가하여 해결
